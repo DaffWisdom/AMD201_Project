@@ -24,13 +24,13 @@ MySQL
 git clone https://github.com/daffwisdom/AMD_Project
 cd url-shortener
 2. Setup Backend
-cd backend
+cd Backend/UrlShortener.Api
 npm install
-npm run dev
+dotnet run
 3. Setup Frontend
 cd frontend
 npm install
-npm start
+npm run dev
 
 📊 Example
 
