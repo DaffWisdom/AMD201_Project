@@ -1,0 +1,20 @@
+# Thư mục node_modules
+node_modules/
+
+# Các file log
+*.log
+
+# Các file cấu hình của IDE
+.vscode/
+
+# Các file hệ thống macOS
+.DS_Store
+
+# Các file tạm thời khác
+Thumbs.db
+
+*.db
+*.db-shm
+*.db-wal
+obj/
+bin/
