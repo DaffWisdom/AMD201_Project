@@ -5,10 +5,10 @@ const USE_MOCK = false;
 
 export const shortenUrl = async (originalUrl) => {
     if (USE_MOCK) {
-        // ... (giữ nguyên code cũ)
+        // Mock API response
     }
 
     
-    const response = await axios.post('http://localhost:5198/api/url', { originalUrl });
+    const response = await axios.post('http://localhost:5000/api/url', { originalUrl });
     return response; 
 };
