@@ -9,6 +9,6 @@ export const shortenUrl = async (originalUrl) => {
     }
 
     
-    const response = await axios.post('http://localhost:5000/api/url', { originalUrl });
+    const response = await axios.post('https://url-shortener-api-webb.onrender.com/api/url', { originalUrl });
     return response; 
 };
