@@ -2,29 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using UrlShortener.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-// Đăng ký AppDbContext với SQLite
+
+// 1. Đăng ký AppDbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Thêm dịch vụ Controller
 builder.Services.AddControllers();
 
-// Cấu hình CORS cho phép Frontend gọi API
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend", policy =>
-    {
-        policy.WithOrigins("http://localhost:5173") // Cổng mặc định của React Vite
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
-
+// 2. Cấu hình CORS - CHỈ DÙNG MỘT KHỐI DUY NHẤT
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()    // Quan trọng nhất: Cho phép tất cả nguồn gọi vào
+        policy.AllowAnyOrigin() 
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -32,25 +22,23 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseCors("AllowFrontend");
-app.UseCors("AllowAll");
+// 3. THỨ TỰ MIDDLEWARE (Cực kỳ quan trọng)
+// UseCors PHẢI nằm trước MapControllers
+app.UseRouting(); 
+app.UseCors("AllowAll"); 
 app.UseAuthorization();
+
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    dbContext.Database.Migrate();
-}
-
+// 4. Tự động Migrate Database (Gộp lại cho gọn)
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
         var context = services.GetRequiredService<AppDbContext>();
-        // Lệnh này sẽ tự động tạo file .db và apply các file trong thư mục Migrations
         context.Database.Migrate(); 
+        Console.WriteLine("Database migrated successfully.");
     }
     catch (Exception ex)
     {
