@@ -1,53 +1,39 @@
-# 🔗 .NET URL Shortener Service with CI/CD
+# 🚀 Fullstack URL Shortener (AMD201 Project)
 
-A modern, scalable URL shortening service built with **.NET 9.0** and **React (Vite)**. [cite_start]This project demonstrates the implementation of a full-stack application following professional DevOps principles, including containerization and automated CI/CD pipelines.
+A Fullstack URL Shortener web application developed with modern DevOps practices, including Containerization (Docker) and a CI/CD Pipeline (GitHub Actions).
 
-## 🚀 Features
-* [cite_start]**Link Shortening**: Converts long URLs into manageable 6-character unique codes[cite: 3].
-* [cite_start]**Automatic Redirection**: Seamlessly redirects users from shortened links to original destinations[cite: 3].
-* [cite_start]**Data Persistence**: Stores URL mappings and metadata using SQLite via Entity Framework Core[cite: 3].
-* [cite_start]**Modern UI**: Intuitive frontend dashboard built with React and Vite for easy link management[cite: 3].
-* [cite_start]**Containerization**: Fully ready to be packaged with Docker for consistent deployment.
-* [cite_start]**Automated CI/CD**: Designed for a full pipeline of building, testing, and deploying.
+## 🛠 Tech Stack
 
-## 🛠️ Tech Stack
-### Backend
-* [cite_start]**Framework**: .NET 9.0 Web API.
-* [cite_start]**ORM**: Entity Framework Core[cite: 3].
-* [cite_start]**Database**: SQLite (Local development/Portability)[cite: 4].
-* [cite_start]**API**: RESTful architecture[cite: 19].
+**Frontend:**
+* ReactJS (v18) + Vite
+* Axios (API Client)
+* ESLint (Code Quality)
 
-### Frontend
-* [cite_start]**Library**: React.js (Vite)[cite: 20].
-* [cite_start]**Styling**: CSS & UI Components[cite: 3].
-* [cite_start]**Feedback**: React Hot Toast for real-time notifications[cite: 3].
+**Backend:**
+* ASP.NET Core Web API (.NET 9)
+* Entity Framework Core (ORM)
+* SQLite (Local/Container Database)
+* xUnit (Unit Testing & Integration Testing)
 
+**DevOps & Deployment:**
+* Docker & Docker Compose (Multi-stage build)
+* GitHub Actions (CI/CD Pipeline)
+* Render (Backend Cloud Hosting)
+* Vercel (Frontend Cloud Hosting)
 
-## 📦 Installation
-1. Clone the repository
-git clone https://github.com/daffwisdom/AMD_Project
-cd url-shortener
-2. Setup Backend
-cd Backend/UrlShortener.Api
-npm install
-dotnet run
-3. Setup Frontend
-cd frontend
-npm install
-npm run dev
+---
 
-📊 Example
+## 🌟 Key Features
 
-Original URL:
+1. **Shorten URL:** Converts long URLs into random 6-character short codes. Automatically appends `https://` if omitted by the user.
+2. **Auto Redirect:** Seamlessly redirects users from the short link to the original URL.
+3. **Database Extraction:** Provides a dedicated API (`/api/url/download-db`) to extract and download the physical `urlshortener.db` file directly from the Production cloud environment (Render) for data verification.
+4. **Automated Testing:** Integrates Unit and Integration Tests into the CI/CD pipeline. The workflow acts as a Quality Gate, automatically halting deployment if tests fail.
 
-https://example.com/some/very/long/link
+---
 
-Short URL:
+## 🌐 Live Demo
 
-http://localhost:5173/
-🧠 How It Works
-User inputs a long URL on the React frontend
-Frontend sends request to backend API
-Server generates a unique short code
-Data is stored in MySQL database
-When accessing the short URL, server redirects to original URL
+* **Frontend App (Vercel):** `(https://url-shortener-web-three.vercel.app/)`
+* **Backend API (Render):** `https://url-shortener-api-webb.onrender.com`
+* **View Full Database (JSON):** [Click here](https://url-shortener-api-webb.onrender.com/api/url/all-links)
