@@ -47,6 +47,13 @@ namespace UrlShortener.Api.Controllers
             return Ok(response);
         }
 
+        [HttpGet("all-links")]
+        public IActionResult GetAllUrls()
+        {
+            var urls = _context.UrlMappings.ToList();
+            return Ok(urls);
+        }
+
         [HttpGet("/{shortCode}")]
         public IActionResult RedirectUrl(string shortCode)
         {
