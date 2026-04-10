@@ -113,5 +113,3 @@ namespace UrlShortener.Tests
         }
     }
 }
-// Các test trên đã kiểm tra các tình huống chính của API:
-// 1. Rút gọn URL hợp lệ.
