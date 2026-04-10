@@ -109,6 +109,9 @@ namespace UrlShortener.Tests
             Assert.NotNull(result);
             Assert.Equal(404, result.StatusCode);
             Assert.Equal("Short URL not found.", result.Value);
+            
         }
     }
 }
+// Các test trên đã kiểm tra các tình huống chính của API:
+// 1. Rút gọn URL hợp lệ.
